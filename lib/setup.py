@@ -16,7 +16,7 @@ def find_metadata(metadata_name, file_name):
     file_match = re.search(
         regex_pattern,
         file_data,
-        re.M
+        re.M | re.I
     )
     if file_match:
         return file_match.group(2)
