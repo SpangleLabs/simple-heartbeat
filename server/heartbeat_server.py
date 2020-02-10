@@ -3,6 +3,7 @@ import json
 import os
 from abc import ABC
 from datetime import datetime, timedelta
+from json import JSONDecodeError
 from typing import List, Dict
 
 import flask
@@ -79,7 +80,7 @@ class JsonDataStore(DataStore):
         try:
             with open(self.CONFIG_DIR+self.FILE_NAME, "r") as f:
                 data = json.load(f)
-        except FileNotFoundError:
+        except (FileNotFoundError, JSONDecodeError):
             data = {}
         for app_name, app_data in data.items():
             status = AppStatus(
