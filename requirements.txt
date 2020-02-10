@@ -1,0 +1,5 @@
+# This is the requirements for both the server and library. If you only need one of these, please check that directory
+requests
+isodate
+flask
+python-dateutil
