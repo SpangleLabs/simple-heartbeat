@@ -7,7 +7,7 @@ import isodate
 
 heartbeat_app_url = "http://localhost:5000/"
 
-__VERSION__ = "0.1"
+__VERSION__ = "0.1.0"
 __AUTHOR__ = "Joshua Coales"
 __EMAIL__ = "dr-spangle@dr-spangle.com"
 __URL__ = "https://github.com/joshcoales/simple-heartbeat-lib"
