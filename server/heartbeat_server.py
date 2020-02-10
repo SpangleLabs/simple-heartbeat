@@ -1,14 +1,15 @@
 """Simple heartbeat server"""
 import json
+import os
 from abc import ABC
 from datetime import datetime, timedelta
 from typing import List, Dict
 
 import flask
-import dateutil
+import dateutil.parser
 import isodate
 
-__VERSION__ = "0.1.2"
+__VERSION__ = "0.1.3"
 __AUTHOR__ = "Joshua Coales"
 __EMAIL__ = "dr-spangle@dr-spangle.com"
 __URL__ = "https://github.com/joshcoales/simple-heartbeat-lib"
@@ -97,8 +98,9 @@ class JsonDataStore(DataStore):
                 "timestamp": app_status.timestamp.isoformat(),
                 "expiry_period": isodate.duration_isoformat(app_status.expiry),
             }
+        os.makedirs(self.CONFIG_DIR, exist_ok=True)
         with open(self.CONFIG_DIR+self.FILE_NAME, "w") as f:
-            json.dump(f, json_dict)
+            json.dump(json_dict, f, indent=2)
 
 
 data_store = JsonDataStore()
@@ -122,10 +124,11 @@ def update_status(app_name):
     # Post data, if applicable
     req_json = flask.request.get_json(silent=True)
     if req_json is not None:
-        new_status = req_json.get("status")
-        new_expiry = isodate.parse_duration(req_json.get("expiry"))
+        new_status = req_json.get("status") or new_status
+        new_expiry = isodate.parse_duration(req_json.get("expiry")) or new_expiry
     status = AppStatus(app_name, new_status, datetime.now(), new_expiry)
     data_store.update_status(app_name, status)
+    return str(status)
 
 
 @app.route("/check/<app_name>")
