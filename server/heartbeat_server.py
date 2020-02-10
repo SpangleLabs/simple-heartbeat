@@ -9,7 +9,7 @@ import flask
 import dateutil.parser
 import isodate
 
-__VERSION__ = "0.1.3"
+__VERSION__ = "0.1.4"
 __AUTHOR__ = "Joshua Coales"
 __EMAIL__ = "dr-spangle@dr-spangle.com"
 __URL__ = "https://github.com/joshcoales/simple-heartbeat-lib"
@@ -93,7 +93,7 @@ class JsonDataStore(DataStore):
     def _save_to_json(self):
         json_dict = {}
         for app_name, app_status in self.app_status.items():
-            json_dict["app_name"] = {
+            json_dict[app_name] = {
                 "status": app_status.status,
                 "timestamp": app_status.timestamp.isoformat(),
                 "expiry_period": isodate.duration_isoformat(app_status.expiry),
