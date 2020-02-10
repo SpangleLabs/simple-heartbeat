@@ -44,6 +44,8 @@ class AppStatus:
 
 
 class DataStore(ABC):
+    CONFIG_DIR = "config/"
+
     def __init__(self):
         self.app_status = {}  # type: Dict[str, AppStatus]
 
@@ -74,7 +76,7 @@ class JsonDataStore(DataStore):
 
     def _load_from_json(self):
         try:
-            with open(self.FILE_NAME, "r") as f:
+            with open(self.CONFIG_DIR+self.FILE_NAME, "r") as f:
                 data = json.load(f)
         except FileNotFoundError:
             data = {}
@@ -95,7 +97,7 @@ class JsonDataStore(DataStore):
                 "timestamp": app_status.timestamp.isoformat(),
                 "expiry_period": isodate.duration_isoformat(app_status.expiry),
             }
-        with open(self.FILE_NAME, "w") as f:
+        with open(self.CONFIG_DIR+self.FILE_NAME, "w") as f:
             json.dump(f, json_dict)
 
 

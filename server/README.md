@@ -34,8 +34,9 @@ This should be available on docker hub, at [joshcoales/simple-heartbeat](https:/
 and can be deployed like so:
 ```shell script
 docker run \
-  --name heartbeat_server \
+  --name=heartbeat_server \
   --restart=always \
+  --volume=/etc/heartbeat/config/:/app/config/ \
   -p 80:5000 \
   -d joshcoales/simple-heartbeat 
 ``` 
