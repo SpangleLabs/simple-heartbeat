@@ -45,7 +45,7 @@ class AppStatus:
 
 
 class DataStore(ABC):
-    CONFIG_DIR = "config/"
+    CONFIG_DIR = "/config/"
 
     def __init__(self):
         self.app_status = {}  # type: Dict[str, AppStatus]
