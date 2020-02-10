@@ -36,7 +36,6 @@ and can be deployed like so:
 docker run \
   --name=heartbeat_server \
   --restart=always \
-  --volume=/etc/heartbeat/config/:/config/ \
   -p 80:5000 \
   -d joshcoales/simple-heartbeat 
 ``` 
