@@ -36,6 +36,8 @@ and can be deployed like so:
 docker run \
   --name=heartbeat_server \
   --restart=always \
+  -v /etc/heartbeat/config:/config
   -p 80:5000 \
   -d joshcoales/simple-heartbeat 
 ``` 
+Note: If you are using docker from snap, you may be better putting heartbeat config under your /home directory
