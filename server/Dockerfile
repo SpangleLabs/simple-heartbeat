@@ -1,7 +1,7 @@
-FROM python:3.6-alpine
+FROM tiangolo/meinheld-gunicorn-flask:python3.6-alpine3.8
 COPY . /app
 WORKDIR /app
 RUN pip install -r requirements.txt
-ENTRYPOINT ["python"]
-EXPOSE 5000
-CMD ["heartbeat_server.py"]
+EXPOSE 80
+ENV MODULE_NAME "heartbeat_server"
+ENV VARIABLE_NAME "app"

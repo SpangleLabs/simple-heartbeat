@@ -10,7 +10,7 @@ import flask
 import dateutil.parser
 import isodate
 
-__VERSION__ = "0.1.4"
+__VERSION__ = "0.1.5"
 __AUTHOR__ = "Joshua Coales"
 __EMAIL__ = "dr-spangle@dr-spangle.com"
 __URL__ = "https://github.com/joshcoales/simple-heartbeat-lib"
