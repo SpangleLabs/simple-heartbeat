@@ -13,7 +13,7 @@ import isodate
 __VERSION__ = "0.1.5"
 __AUTHOR__ = "Joshua Coales"
 __EMAIL__ = "dr-spangle@dr-spangle.com"
-__URL__ = "https://github.com/joshcoales/simple-heartbeat-lib"
+__URL__ = "https://github.com/joshcoales/simple-heartbeat"
 
 app = flask.Flask(__name__)
 
